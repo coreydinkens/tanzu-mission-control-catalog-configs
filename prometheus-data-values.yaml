@@ -1,0 +1,52 @@
+#@data/values
+#@overlay/match-child-defaults missing_ok=True
+---
+monitoring:
+  prometheus_server:
+    service:
+      type: LoadBalancer
+    image:
+      repository: projects.registry.vmware.com/tkg/prometheus
+    pvc:
+      storage_class: <set default storage class here>
+      storage: "8Gi"
+  alertmanager:
+    image:
+      repository: projects.registry.vmware.com/tkg/prometheus
+    pvc:
+      storage_class: <set default storage class here>
+      storage: "8Gi"
+  kube_state_metrics:
+    image:
+      repository: projects.registry.vmware.com/tkg/prometheus
+  node_exporter:
+    image:
+      repository: projects.registry.vmware.com/tkg/prometheus
+  pushgateway:
+    image:
+      repository: projects.registry.vmware.com/tkg/prometheus
+  cadvisor:
+    image:
+      repository: projects.registry.vmware.com/tkg/prometheus
+  prometheus_server_configmap_reload:
+    image:
+      repository: projects.registry.vmware.com/tkg/prometheus
+  prometheus_server_init_container:
+    image:
+      repository: projects.registry.vmware.com/tkg/prometheus
+ingress:
+  enabled: true
+  virtual_host_fqdn: "prometheus.system.tanzu"
+  prometheus_prefix: "/"
+  alertmanager_prefix: "/alertmanager/"
+  prometheusServicePort: 80
+  alertmanagerServicePort: 80
+  #! [Optional] The certificate for the ingress if you want to use your own TLS certificate.
+  #! We will issue the certificate by cert-manager when it's empty.
+  tlsCertificate:
+    #! [Required] the certificate
+    tls.crt:
+    #! [Required] the private key
+    tls.key:
+    #! [Optional] the CA certificate
+    ca.crt:

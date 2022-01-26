@@ -1,0 +1,18 @@
+#@data/values
+#@overlay/match-child-defaults missing_ok=True
+---
+monitoring:
+  grafana:
+    image:
+      repository: "projects.registry.vmware.com/tkg/grafana"
+    pvc:
+      storage_class: container-iscsi-workloads
+      storage: "8Gi"
+    secret:
+      admin_password: "CHANGEME"
+  grafana_init_container:
+    image:
+      repository: "projects.registry.vmware.com/tkg/grafana"
+  grafana_sc_dashboard:
+    image:
+      repository: "projects.registry.vmware.com/tkg/grafana"
