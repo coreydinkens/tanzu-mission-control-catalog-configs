@@ -6,7 +6,7 @@ monitoring:
     image:
       repository: "projects.registry.vmware.com/tkg/grafana"
     pvc:
-      storage_class: container-iscsi-workloads
+      storage_class: <set default storage class here>
       storage: "8Gi"
     secret:
       admin_password: "CHANGEME"
