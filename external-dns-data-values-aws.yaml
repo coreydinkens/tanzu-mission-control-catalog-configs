@@ -1,0 +1,27 @@
+deployment:
+  args:
+    - --source=service
+    - --source=ingress
+    - --provider=aws
+    - --aws-assume-role=<insert ARN for role if assuming IAM role>
+    - --domain-filter=<insert managed domain here>
+    - --events
+    - --policy=sync
+    - --aws-zone-type=private
+    - --aws-prefer-cname
+    - --registry=txt
+    - --txt-owner-id=<insert Zone ID>
+    - --txt-prefix=txt
+    - --log-level=debug
+  env:
+    - name: AWS_ACCESS_KEY_ID
+      valueFrom:
+        secretKeyRef:
+          key: access-key-id
+          name: aws-externaldns
+    - name: AWS_SECRET_ACCESS_KEY
+      valueFrom:
+        secretKeyRef:
+          key: secret-access-key
+          name: aws-externaldns
+
