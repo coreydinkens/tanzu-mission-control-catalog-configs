@@ -1,0 +1,45 @@
+hostname: <set harbor hostname here>
+harborAdminPassword: <set admin password here>
+secretKey: <set secret key here>
+database:
+  password: <set database password here>
+core:
+  secret: <set secret here>
+  xsrfKey: <set xsrf key here>
+jobservice:
+  secret: <set jobservice secret here>
+registry:
+  secret: <set registry secret here>
+notary:
+  enabled: true
+trivy:
+  enabled: true
+  gitHubToken: ""
+persistence:
+  persistentVolumeClaim:
+    registry:
+      storageClass: "<set storage class here>"
+      accessMode: ReadWriteOnce
+      size: 10Gi
+    jobservice:
+      storageClass: "<set storage class here>"
+      accessMode: ReadWriteOnce
+      size: 1Gi
+    database:
+      storageClass: "<set storage class here>"
+      accessMode: ReadWriteOnce
+      size: 1Gi
+    redis:
+      storageClass: "<set storage class here>"
+      accessMode: ReadWriteOnce
+      size: 1Gi
+    trivy:
+      storageClass: "<set storage class here>"
+      accessMode: ReadWriteOnce
+      size: 5Gi
+  imageChartStorage:
+    type: filesystem
+    filesystem:
+      rootdirectory: /storage
+metrics:
+  enabled: true
